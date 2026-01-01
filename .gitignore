@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build output
+dist/
+tmp/
+out-tsc/
+bazel-out/
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+*.swp
+*.swo
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Angular cache
+.angular/
+.sass-cache/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# PM2
+.pm2/
+ecosystem.config.js.bak
+
+# Misc
+*.tgz
+.eslintcache
+.stylelintcache
+
+# Editor directories
+*.sublime-workspace
+*.sublime-project
+
+# TypeScript
+*.tsbuildinfo
