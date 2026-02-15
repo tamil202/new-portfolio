@@ -78,7 +78,7 @@ gsap.registerPlugin(ScrollToPlugin);
           <li><a href="#contact" [class.active]="activeSection() === 'contact'" (click)="scrollTo($event, 'contact'); closeMobileNav()">Contact</a></li>
         </ul>
         <div class="nav-actions">
-          <a class="nav-link" href="/assets/TTamilvanan Resume.pdf" download>Resume</a>
+          <a class="nav-link" href="/assets/Tamilvanan Resume.pdf" download>Resume</a>
           <a class="nav-cta" href="#contact" (click)="scrollTo($event, 'contact')">Hire Me</a>
         </div>
       </nav>
