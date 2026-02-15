@@ -62,7 +62,7 @@ import { gsap } from 'gsap';
             </div>
           </div>
 
-          <form class="contact-form" (ngSubmit)="onSubmit()">
+          <form class="contact-form" (submit)="onSubmit($event)">
             <div class="form-group">
               <label for="name" class="form-label">Name</label>
               <input
@@ -359,7 +359,9 @@ export class ContactComponent {
     });
   }
 
-  onSubmit(): void {
+  onSubmit(event: Event): void {
+    event.preventDefault();
+
     // Touch all fields
     this.nameTouched.set(true);
     this.emailTouched.set(true);
@@ -386,8 +388,8 @@ export class ContactComponent {
 
     const mailtoUrl = `mailto:${toEmail}?subject=${subject}&body=${body}`;
 
-    // Open email client immediately
-    window.open(mailtoUrl, '_self');
+    // Open email client immediately (more reliable than popup-style open)
+    window.location.href = mailtoUrl;
 
     this.isSubmitting.set(false);
     this.submitSuccess.set(true);

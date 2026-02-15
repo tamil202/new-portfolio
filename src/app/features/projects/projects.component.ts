@@ -518,19 +518,26 @@ export class ProjectsComponent {
 
   private animationCleanupFns: (() => void)[] = [];
   private hoverCleanupFns: (() => void)[] = [];
+  private readonly viewReady = signal(false);
+
+  private readonly syncProjectUiEffect = effect(() => {
+    this.filteredProjects();
+
+    if (!this.viewReady()) {
+      return;
+    }
+
+    queueMicrotask(() => {
+      this.initHoverEffects();
+      refreshScrollTriggers();
+    });
+  });
 
   constructor() {
     afterNextRender(() => {
+      this.viewReady.set(true);
       this.initAnimation();
       this.initHoverEffects();
-
-      effect(() => {
-        this.filteredProjects();
-        setTimeout(() => {
-          this.initHoverEffects();
-          refreshScrollTriggers();
-        }, 0);
-      });
     });
   }
 
