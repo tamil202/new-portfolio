@@ -65,7 +65,7 @@ gsap.registerPlugin(ScrollToPlugin, TextPlugin);
           <a href="#contact" class="btn btn-secondary cyber-btn" (click)="scrollTo($event, 'contact')">
             <span class="btn-glitch" data-text="Get in Touch">Get in Touch</span>
           </a>
-          <a href="/assets/Tamilvanan_Resume.pdf" class="btn btn-secondary cyber-btn" download>
+          <a href="/assets/Tamilvanan Resume.pdf" class="btn btn-secondary cyber-btn" download>
             <span class="btn-glitch" data-text="Download Resume">Download Resume</span>
           </a>
         </div>
@@ -543,9 +543,9 @@ export class HeroComponent {
       ease: 'power2.out',
       stagger: 0.15
     }, 0)
-    .from([this.ring1().nativeElement, this.ring2().nativeElement, this.ring3().nativeElement], {
-      scale: 0.5,
-    }, 0);
+      .from([this.ring1().nativeElement, this.ring2().nativeElement, this.ring3().nativeElement], {
+        scale: 0.5,
+      }, 0);
 
     // Badge with glitch effect
     tl.to(this.badge().nativeElement, {
@@ -554,7 +554,7 @@ export class HeroComponent {
       duration: 0.4,
       ease: 'power2.out'
     }, 0.3)
-    .from(this.badge().nativeElement, { y: 20 }, '<');
+      .from(this.badge().nativeElement, { y: 20 }, '<');
 
     // Name with dramatic reveal
     tl.to(this.name().nativeElement, {
@@ -563,18 +563,18 @@ export class HeroComponent {
       duration: 0.8,
       ease: 'power3.out'
     }, 0.5)
-    .from(this.name().nativeElement, { y: 50, scale: 0.9 }, '<');
+      .from(this.name().nativeElement, { y: 50, scale: 0.9 }, '<');
 
     // Role typing effect
     tl.to(this.role().nativeElement, {
       opacity: 1,
       duration: 0.3
     }, 0.8)
-    .to(this.roleText().nativeElement, {
-      text: { value: 'Software Engineer', delimiter: '' },
-      duration: 1.5,
-      ease: 'none'
-    }, 0.9);
+      .to(this.roleText().nativeElement, {
+        text: { value: 'Software Engineer', delimiter: '' },
+        duration: 1.5,
+        ease: 'none'
+      }, 0.9);
 
     // Intro
     tl.to(this.intro().nativeElement, {
@@ -583,7 +583,7 @@ export class HeroComponent {
       duration: 0.6,
       ease: 'power2.out'
     }, 1.2)
-    .from(this.intro().nativeElement, { y: 20 }, '<');
+      .from(this.intro().nativeElement, { y: 20 }, '<');
 
     // CTA buttons
     tl.to(this.cta().nativeElement, {
@@ -592,7 +592,7 @@ export class HeroComponent {
       duration: 0.6,
       ease: 'power2.out'
     }, 1.4)
-    .from(this.cta().nativeElement, { y: 20 }, '<');
+      .from(this.cta().nativeElement, { y: 20 }, '<');
 
     // Availability badges
     tl.to(this.badges().nativeElement, {
@@ -601,7 +601,7 @@ export class HeroComponent {
       duration: 0.6,
       ease: 'power2.out'
     }, 1.5)
-    .from(this.badges().nativeElement, { y: 20 }, '<');
+      .from(this.badges().nativeElement, { y: 20 }, '<');
 
     // HUD
     tl.to(this.hud().nativeElement, {
@@ -610,7 +610,7 @@ export class HeroComponent {
       duration: 0.6,
       ease: 'power2.out'
     }, 1.6)
-    .from(this.hud().nativeElement, { y: 20 }, '<');
+      .from(this.hud().nativeElement, { y: 20 }, '<');
 
     this.destroyRef.onDestroy(() => {
       tl.kill();

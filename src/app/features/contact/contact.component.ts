@@ -310,7 +310,7 @@ export class ContactComponent {
   readonly contactContent = viewChild.required<ElementRef>('contactContent');
   readonly socialLinks = this.store.socialLinks;
   readonly quickLinks = [
-    { label: 'Resume (PDF)', url: '/assets/Tamilvanan_Resume.pdf' }
+    { label: 'Resume (PDF)', url: '/assets/Tamilvanan Resume.pdf' }
   ];
 
   // Form data as signals for reactivity
