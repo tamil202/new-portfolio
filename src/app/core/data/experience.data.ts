@@ -55,7 +55,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     platform: 'Email',
-    url: 'mailto:tdev@tamix.in',
+    url: 'mailto:tamil@tamix.in',
     icon: 'email'
   }
 ];

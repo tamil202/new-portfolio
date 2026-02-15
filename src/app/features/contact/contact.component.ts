@@ -29,7 +29,7 @@ import { gsap } from 'gsap';
             <div class="contact-meta">
               <div class="meta-row">
                 <span class="meta-label">Location</span>
-                <span class="meta-value">Bangalore, Karnataka</span>
+                <span class="meta-value">Tamil Nadu, India</span>
               </div>
               <div class="meta-row">
                 <span class="meta-label">Timezone</span>
@@ -37,7 +37,7 @@ import { gsap } from 'gsap';
               </div>
               <div class="meta-row">
                 <span class="meta-label">Availability</span>
-                <span class="meta-value">Open to full-time and contract roles</span>
+                <span class="meta-value">Open to full-time roles</span>
               </div>
             </div>
             <div class="contact-links">
@@ -310,8 +310,7 @@ export class ContactComponent {
   readonly contactContent = viewChild.required<ElementRef>('contactContent');
   readonly socialLinks = this.store.socialLinks;
   readonly quickLinks = [
-    { label: 'Resume (PDF)', url: '/assets/Tamilvanan_Resume.pdf' },
-    { label: 'Open VSX', url: 'https://open-vsx.org/' }
+    { label: 'Resume (PDF)', url: '/assets/Tamilvanan_Resume.pdf' }
   ];
 
   // Form data as signals for reactivity
@@ -373,7 +372,7 @@ export class ContactComponent {
     this.isSubmitting.set(true);
 
     // Build mailto URL with form data
-    const toEmail = 'tdev@tamix.in';
+    const toEmail = 'tamil@tamix.in';
     const userName = this.name();
     const userEmail = this.email();
     const userMessage = this.message();

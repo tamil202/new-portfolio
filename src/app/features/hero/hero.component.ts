@@ -72,7 +72,6 @@ gsap.registerPlugin(ScrollToPlugin, TextPlugin);
 
         <div class="hero-badges" #badges>
           <span class="badge-pill">Open to Full-time</span>
-          <span class="badge-pill">Open to Contract</span>
           <span class="badge-pill">Remote Friendly</span>
         </div>
 

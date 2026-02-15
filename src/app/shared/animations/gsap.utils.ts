@@ -21,6 +21,15 @@ const DEFAULT_OPTIONS: AnimationOptions = {
   stagger: 0.1
 };
 
+let scrollTriggerRegistered = false;
+
+function ensureScrollTrigger(): void {
+  if (!scrollTriggerRegistered) {
+    gsap.registerPlugin(ScrollTrigger);
+    scrollTriggerRegistered = true;
+  }
+}
+
 /**
  * Creates a GSAP context for scoped animations with automatic cleanup
  */
@@ -88,6 +97,7 @@ export function scrollReveal(
   if (prefersReducedMotion()()) {
     return null;
   }
+  ensureScrollTrigger();
 
   const target = element instanceof ElementRef ? element.nativeElement : element;
 
@@ -117,9 +127,13 @@ export function scrollStaggerReveal(
   if (prefersReducedMotion()()) {
     return null;
   }
+  ensureScrollTrigger();
 
   const target = container instanceof ElementRef ? container.nativeElement : container;
   const children = target.querySelectorAll(childSelector);
+  if (!children.length) {
+    return null;
+  }
   const opts = { ...DEFAULT_OPTIONS, ...options };
   const scale = motionScale();
 
@@ -129,12 +143,15 @@ export function scrollStaggerReveal(
     duration: (opts.duration ?? 0) * scale,
     ease: opts.ease,
     stagger: (opts.stagger ?? 0) * scale,
-    paused: true
+    paused: true,
+    immediateRender: false
   });
 
   return ScrollTrigger.create({
     trigger: target,
     start: 'top 85%',
+    once: true,
+    invalidateOnRefresh: true,
     toggleActions: 'play none none none',
     animation: tween
   });
@@ -199,5 +216,6 @@ export function killAnimations(element: ElementRef | HTMLElement): void {
  * Refreshes all ScrollTriggers (call after layout changes)
  */
 export function refreshScrollTriggers(): void {
+  ensureScrollTrigger();
   ScrollTrigger.refresh();
 }

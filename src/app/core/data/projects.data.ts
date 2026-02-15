@@ -92,7 +92,7 @@ export const PROJECTS_DATA: Project[] = [
     id: 'flow-mind',
     title: 'Flow Mind',
     summary: 'VS Code extension that turns selected code into flow diagrams.',
-    description: 'VS Code extension that generates a flow diagram from selected code/text to explain execution flow. Available in the Open VSX Registry (OVSX). Built with Node.js, TypeScript, the VS Code API, and Groq API.',
+    description: 'VS Code extension that generates a flow diagram from selected code/text to explain execution flow. Built with Node.js, TypeScript, the VS Code API, and Groq API.',
     role: 'Extension author',
     timeline: '2026',
     impact: 'Makes code comprehension faster for readers.',
@@ -100,9 +100,6 @@ export const PROJECTS_DATA: Project[] = [
       { label: 'Surface', value: 'VS Code' },
       { label: 'Output', value: 'Flow diagram' },
       { label: 'AI', value: 'Groq API' }
-    ],
-    links: [
-      { label: 'OVSX', url: 'https://open-vsx.org/', kind: 'ovsx' }
     ],
     technologies: ['Node.js', 'TypeScript', 'VS Code API', 'Groq API'],
     featured: true,

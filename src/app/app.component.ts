@@ -37,6 +37,11 @@ gsap.registerPlugin(ScrollToPlugin);
       <span class="hud-line hud-line-left"></span>
       <span class="hud-line hud-line-right"></span>
     </div>
+    @if (showTamixBlink()) {
+      <div class="tamix-bg" aria-hidden="true">
+        <span>tamix.in</span>
+      </div>
+    }
 
     <!-- Start Button + Door Animation Overlay -->
     <app-start-button (started)="onStarted()" />
@@ -46,7 +51,14 @@ gsap.registerPlugin(ScrollToPlugin);
       <!-- Snake Game Background -->
       <canvas #snakeCanvas class="snake-canvas"></canvas>
       <nav class="nav container" aria-label="Primary">
-        <a href="#home" class="nav-logo" (click)="scrollTo($event, 'home')">Tamilvanan</a>
+        <a href="#home" class="nav-logo" (click)="scrollTo($event, 'home')" aria-label="Tamilvanan Tv">
+          <span class="brand-bottom">
+            <span class="brand-tv">
+              Tamilvanan
+              <sub class="brand-sub">TV</sub>
+            </span>
+          </span>
+        </a>
         <button
           type="button"
           class="nav-toggle"
@@ -109,6 +121,50 @@ gsap.registerPlugin(ScrollToPlugin);
       transform: translateY(-20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
       overflow: hidden;
+    }
+
+    .tamix-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+    }
+
+    .tamix-bg span {
+      position: absolute;
+      font-size: clamp(2.2rem, 9vw, 8rem);
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: lowercase;
+      color: rgba(59, 130, 246, 0.13);
+      text-shadow: 0 0 24px rgba(59, 130, 246, 0.35);
+      animation: tamixBlinkHide 1.4s steps(2, end) forwards;
+    }
+
+    @keyframes tamixBlinkHide {
+      0% {
+        opacity: 0.06;
+      }
+      15% {
+        opacity: 0.2;
+      }
+      30% {
+        opacity: 0.06;
+      }
+      45% {
+        opacity: 0.2;
+      }
+      60% {
+        opacity: 0.08;
+      }
+      75% {
+        opacity: 0.18;
+      }
+      100% {
+        opacity: 0;
+      }
     }
 
     .scroll-progress {
@@ -234,11 +290,37 @@ gsap.registerPlugin(ScrollToPlugin);
     }
 
     .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
       color: var(--color-text);
       text-decoration: none;
       cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      line-height: 1;
+    }
+
+    .brand-bottom {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .brand-tv {
+      font-size: 1.22rem;
+      letter-spacing: 0.06em;
+      font-weight: 800;
+      color: var(--color-text);
+      text-shadow: 0 0 16px rgba(59, 130, 246, 0.35);
+    }
+
+    .brand-sub {
+      font-size: 0.46rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-left: 0.2rem;
+      font-weight: 600;
+      vertical-align: sub;
     }
 
     .nav-links {
@@ -395,6 +477,7 @@ export class AppComponent {
   readonly mobileNavOpen = signal(false);
   readonly scrollProgress = signal(0);
   readonly showBackToTop = signal(false);
+  readonly showTamixBlink = signal(false);
 
   private sectionObserver: IntersectionObserver | null = null;
   private readonly sectionIds = ['home', 'about', 'skills', 'projects', 'testimonials', 'experience', 'contact'];
@@ -403,6 +486,7 @@ export class AppComponent {
   private snakeGameInterval: any = null;
   private snakeCtx: CanvasRenderingContext2D | null = null;
   private resizeObserver: ResizeObserver | null = null;
+  private tamixBlinkTimeout: ReturnType<typeof setTimeout> | null = null;
   private canvasMetrics = { width: 0, height: 0, dpr: 1 };
   private snake: { x: number; y: number }[] = [];
   private food: { x: number; y: number } = { x: 0, y: 0 };
@@ -417,10 +501,25 @@ export class AppComponent {
       this.setupSectionObserver();
       this.setupKeyboardNavigation();
     });
+
+    this.destroyRef.onDestroy(() => {
+      if (this.tamixBlinkTimeout) {
+        clearTimeout(this.tamixBlinkTimeout);
+        this.tamixBlinkTimeout = null;
+      }
+    });
   }
 
   onStarted(): void {
     this.hasStarted.set(true);
+    this.showTamixBlink.set(true);
+    if (this.tamixBlinkTimeout) {
+      clearTimeout(this.tamixBlinkTimeout);
+    }
+    this.tamixBlinkTimeout = setTimeout(() => {
+      this.showTamixBlink.set(false);
+      this.tamixBlinkTimeout = null;
+    }, 1400);
     // Start snake game after a short delay
     setTimeout(() => this.startSnakeGame(), 500);
   }

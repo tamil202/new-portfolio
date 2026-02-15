@@ -759,12 +759,14 @@ export class StartButtonComponent {
     // Step 4: Door opening with light
     masterTimeline
       .to(doorLeft, {
-        x: '-100%',
+        x: '-20%',
+        y: '100%',
         duration: 1.2,
         ease: 'power3.inOut'
       }, 0.7)
       .to(doorRight, {
-        x: '100%',
+        x: '20%',
+        y: '-100%',
         duration: 1.2,
         ease: 'power3.inOut'
       }, 0.75)

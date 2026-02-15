@@ -72,8 +72,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .section {
   padding: var(--section-padding);
-  content-visibility: auto;
-  contain-intrinsic-size: 600px;
   position: relative;
   overflow: hidden;
 }
